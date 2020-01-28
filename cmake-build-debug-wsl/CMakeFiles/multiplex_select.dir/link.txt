@@ -1,0 +1,1 @@
+/usr/bin/c++  -L /root/linuxb/boost_1_72_0 -pthread -g   CMakeFiles/multiplex_select.dir/multiplex/select.cpp.o  -o multiplex_select 

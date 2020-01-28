@@ -1,0 +1,104 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_47741/fast"
+/usr/bin/make -f CMakeFiles/cmTC_47741.dir/build.make CMakeFiles/cmTC_47741.dir/build
+make[1]: Entering directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_47741.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_47741.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_47741
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_47741.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_47741.dir/CMakeCCompilerABI.c.o  -o cmTC_47741 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04.1' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_47741' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBBYMXs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_47741 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_47741.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_47741' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+Cannot copy output executable
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/cmTC_47741'
+to destination specified by COPY_FILE:
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin'
+
+
+Detecting C [-std=c11] compiler features failed to compile with the following output:
+Change Dir: /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a0231/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a0231.dir/build.make CMakeFiles/cmTC_a0231.dir/build
+make[1]: Entering directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a0231.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_a0231.dir/feature_tests.c.o   -c /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/feature_tests.c
+Linking C executable cmTC_a0231
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0231.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_a0231.dir/feature_tests.c.o  -o cmTC_a0231 
+make[1]: Leaving directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+Cannot copy output executable
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/cmTC_a0231'
+to destination specified by COPY_FILE:
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/feature_tests.bin'
+
+
+Detecting CXX compiler ABI info failed to compile with the following output:
+Change Dir: /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e5109/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e5109.dir/build.make CMakeFiles/cmTC_e5109.dir/build
+make[1]: Entering directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e5109.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_e5109.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_e5109
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5109.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_e5109.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_e5109 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04.1' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_e5109' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpf1xl1.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_e5109 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_e5109.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_e5109' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+Cannot copy output executable
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/cmTC_e5109'
+to destination specified by COPY_FILE:
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin'
+
+
+Detecting CXX [-std=c++1z] compiler features failed to compile with the following output:
+Change Dir: /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d2e63/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d2e63.dir/build.make CMakeFiles/cmTC_d2e63.dir/build
+make[1]: Entering directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d2e63.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_d2e63.dir/feature_tests.cxx.o -c /mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_d2e63
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2e63.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_d2e63.dir/feature_tests.cxx.o  -o cmTC_d2e63 
+make[1]: Leaving directory '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+Cannot copy output executable
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/cmTC_d2e63'
+to destination specified by COPY_FILE:
+  '/mnt/c/Users/Ian/Documents/Programming/TPark/DB/cmake-build-debug-wsl/CMakeFiles/feature_tests.bin'
+
+

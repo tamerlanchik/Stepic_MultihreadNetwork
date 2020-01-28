@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Ian/Documents/Programming/TPark/DB/multiplex/chat/server.cpp
+iostream
+-
+sys/time.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+unistd.h
+-
+fcntl.h
+-
+set
+-
+algorithm
+-
+unordered_set
+-
+sys/epoll.h
+-
+arpa/inet.h
+-
+functional
+-
+

@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.10)
+project(DB)
+#   Boost
+set(Boost_INCLUDE_DIR external/boost)
+set(Boost_LIBRARY_DIR external/boost/stage/lib)
+find_package(Boost 1.72.0 COMPONENTS)
+include_directories(external/boost)
+
+set(CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_FLAGS "-L /root/linuxb/boost_1_72_0 -pthread")
+add_executable(DB main.cpp multiplex/select.cpp multiplex/poll.cpp multiplex/chat/server.cpp multiplex/chat/client.cpp)
+add_executable(SharedPtr shared_ptr.cpp)
+add_executable(sockets_server sockets/server.cpp)
+add_executable(sockets_client sockets/client.cpp)
+add_executable(multiplex_select multiplex/select.cpp)
+add_executable(multiplex_poll multiplex/poll.cpp)
+add_executable(multiplex_epoll multiplex/epoll.cpp)
+add_executable(multiplex_chat_server multiplex/chat/server.cpp)
