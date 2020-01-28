@@ -1,1 +1,0 @@
-/usr/bin/c++  -L /root/linuxb/boost_1_72_0 -pthread -g   CMakeFiles/DB.dir/main.cpp.o CMakeFiles/DB.dir/multiplex/select.cpp.o CMakeFiles/DB.dir/multiplex/poll.cpp.o CMakeFiles/DB.dir/multiplex/chat/server.cpp.o CMakeFiles/DB.dir/multiplex/chat/client.cpp.o  -o DB 
