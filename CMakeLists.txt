@@ -28,5 +28,10 @@ add_executable(multiplex_epoll multiplex/epoll.cpp)
 add_executable(multiplex_chat_server multiplex/chat/server.cpp)
 add_executable(async-libraries_libevent async_libraries/llibevent.cpp)
 
+add_executable(PChS_pipe PChS/pipe.cpp)
+add_executable(PChS_pid PChS/pid.cpp)
+add_executable(PChS_zombie PChS/zobmie.cpp)
+add_executable(PChS_pipe2 PChS/pipe2.c)
+
 #target_link_libraries(async-libraries_libevent ${LIBEVENT2_CORE})
 target_link_libraries(async-libraries_libevent event_core)
