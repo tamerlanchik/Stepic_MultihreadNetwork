@@ -8,12 +8,46 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <time.h>
+#include <stdarg.h>
+#include <limits.h>
 
 const unsigned int WORKER_COUNT = 100;
 const char* PIPE_PATHNAME = "/home/ian/pipe";
 const int ERROR = -1;
 
+int max(const int count, ...) {
+	va_list args;
+	va_start(args, count);
+	int max = INT_MIN;
+	int temp;
+	for(unsigned int i = 0; i < count; i++) {
+		if ((temp = va_arg(args, int)) > max) {
+			max = temp;
+		}
+	}
+	return max;
+}
 
+/*	Prepares select for two descriptors on read,
+ * 	returns the activated one or -1 on error. */
+int select2(const int fd1, const int fd2) {
+	fd_set set;
+	FD_ZERO(&set);
+	FD_SET(fd1, &set);
+	FD_SET(fd2, &set);
+	select(1 + max(2, fd1, fd2), &set, NULL, NULL, NULL);
+
+	if(FD_ISSET(fd1, &set)) {
+		return fd1;
+	} else if(FD_ISSET(fd2, &set)) {
+		return fd2;
+	} else {
+		return ERROR;
+	}
+}
+
+/*	Runs a worker process that gets data from fd
+ * and quits its work on any data in quit_chan */
 int create_worker(const int fd, const int quit_chan, const unsigned int number) {
 	int pid;
 	if( (pid = fork()) > 0) {
@@ -23,15 +57,10 @@ int create_worker(const int fd, const int quit_chan, const unsigned int number) 
 	char buffer[1024];
 	printf("Worker #%d started!\n", number);
 	for(;;) {
-		fd_set set;
-		FD_ZERO(&set);
-		FD_SET(fd, &set);
-		FD_SET(quit_chan, &set);
-
-		select((fd > quit_chan ? fd : quit_chan) + 1, &set, NULL, NULL, NULL);
+		int desc = select2(fd, quit_chan);
 		printf("Select worker #%ld\n", number);
 
-		if(FD_ISSET(quit_chan, &set)) {
+		if(desc == quit_chan) {
 			printf("Worker #%ld quiting...\n", number);
 			return 0;
 		}
@@ -49,6 +78,8 @@ int create_worker(const int fd, const int quit_chan, const unsigned int number) 
 
 }
 
+/*	Creates worker_count worker processes, divides data
+ * got in data_chan between workers. Quits its work on any data in quit_chan. */
 int dispatcher(const char* data_chan, const int worker_count, const int quit_chan) {
 	int pid;
 	if (pid = fork()) {
@@ -82,16 +113,21 @@ int dispatcher(const char* data_chan, const int worker_count, const int quit_cha
 	srand(time(NULL));
 
 	for(;;) {
-		fd_set set;
-		FD_ZERO(&set);
-		FD_SET(fd, &set);
-		FD_SET(quit_chan, &set);
-		select(1 + (fd > quit_chan ? fd : quit_chan), &set, NULL, NULL, NULL);
-		if(FD_ISSET(quit_chan, &set)) {
+//		fd_set set;
+//		FD_ZERO(&set);
+//		FD_SET(fd, &set);
+//		FD_SET(quit_chan, &set);
+//		select(1 + (fd > quit_chan ? fd : quit_chan), &set, NULL, NULL, NULL);
+
+		int desc = select2(fd, quit_chan);
+		if (desc == ERROR) {
+			return -1;
+		}
+
+		if(desc == quit_chan) {
 			printf("Dispatcher quiting...");
 			exit(0);
 		}
-
 
 		int len = read(fd, buffer, 1024);
 		if (len == 0) {
@@ -107,15 +143,15 @@ int dispatcher(const char* data_chan, const int worker_count, const int quit_cha
 			perror("");
 			return ERROR;
 		}
-
 	}
-
 }
-
 
 const int PIPE_READ = 0;
 const int PIPE_WRITE = 1;
 
+/*	Callback that sends data to quit_chan.
+ *  To set the quit_chan value one must call
+ *  it with the required value first. */
 void on_quit(int t) {
 	static int fd = -1;
 	if (fd == -1) {
@@ -132,6 +168,7 @@ void on_quit(int t) {
 		wait(NULL);
 	}
 }
+
 int main(int argc, const char* argv[]) {
     setbuf(stdout, 0);
     if(mkfifo(PIPE_PATHNAME, 0666) == ERROR && errno != EEXIST) {
@@ -184,11 +221,6 @@ int main(int argc, const char* argv[]) {
 			continue;
 		}
     }
-
 	wait(NULL);
-
-
-
-
     return 0;
 }
