@@ -1,26 +1,25 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <time.h>
 
-const unsigned int WORKER_COUNT = 2;
+const unsigned int WORKER_COUNT = 100;
 const char* PIPE_PATHNAME = "/home/ian/pipe";
+const int ERROR = -1;
 
-int create_worker(const char* data_chan, const int quit_chan, const unsigned int number) {
+
+int create_worker(const int fd, const int quit_chan, const unsigned int number) {
 	int pid;
 	if( (pid = fork()) > 0) {
 		return pid;
 	}
 
-	int fd = open(data_chan, O_RDONLY);
-	if (fd == -1) {
-		printf("Error during opening channel in worker #%ld\n", number);
-		return -1;
-	}
 	char buffer[1024];
 	printf("Worker #%d started!\n", number);
 	for(;;) {
@@ -38,14 +37,77 @@ int create_worker(const char* data_chan, const int quit_chan, const unsigned int
 		}
 
 		int len = read(fd, buffer, 1024);
-		if (len == -1) {
+		if (len == ERROR) {
 			printf("Cannot read in worker #%ld\n", number);
 			perror("");
-			return -1;
+			return ERROR;
 		} else if(len == 0) {
 			continue;
 		}
 		printf("#%ld: %s\n", number, buffer);
+	}
+
+}
+
+int dispatcher(const char* data_chan, const int worker_count, const int quit_chan) {
+	int pid;
+	if (pid = fork()) {
+		return pid;
+	}
+
+	int worker_datachans[worker_count];
+
+	for(unsigned int i = 0; i < WORKER_COUNT; ++i) {
+		int fd[2];
+		if (ERROR == pipe(fd)) {
+			perror("Cannot create pipe");
+			return ERROR;
+		}
+		worker_datachans[i] = fd[1];
+		int res = create_worker(fd[0], quit_chan, i);
+		if (res < 0) {
+			perror("Error during creating worker");
+			return ERROR;
+		} else if(res == 0) {
+			exit(0);
+		}
+	}
+
+	int fd = open(data_chan, O_RDONLY);
+	if (fd == ERROR) {
+		perror("Error during opening datachan in dispatcher");
+		return ERROR;
+	}
+	char buffer[1024];
+	srand(time(NULL));
+
+	for(;;) {
+		fd_set set;
+		FD_ZERO(&set);
+		FD_SET(fd, &set);
+		FD_SET(quit_chan, &set);
+		select(1 + (fd > quit_chan ? fd : quit_chan), &set, NULL, NULL, NULL);
+		if(FD_ISSET(quit_chan, &set)) {
+			printf("Dispatcher quiting...");
+			exit(0);
+		}
+
+
+		int len = read(fd, buffer, 1024);
+		if (len == 0) {
+			continue;
+		} else if(len == ERROR) {
+			perror("Error during read from datachan");
+			return ERROR;
+		}
+
+		int n = rand() % worker_count;
+		if(ERROR == write(worker_datachans[n], buffer, len)) {
+			printf("Cannot write data to chan %d\n", n);
+			perror("");
+			return ERROR;
+		}
+
 	}
 
 }
@@ -62,23 +124,19 @@ void on_quit(int t) {
 	}
 	if (fd > 0) {
 		printf("Terminating...");
-//		for(int i = 0; i < WORKER_COUNT; i++) {
-int i = 0;
-			if (-1 == write(fd, "quit", 5)) {
-				printf("Cannot write quit #%ld\n", i);
-				perror("");
+			if (ERROR == write(fd, "quit", 5)) {
+				perror("Cannot write quit");
 			} else {
-				printf("Wrote quit to #%ld\n", i);
+				printf("Wrote quit");
 			}
-//		}
 		wait(NULL);
 	}
 }
 int main(int argc, const char* argv[]) {
     setbuf(stdout, 0);
-    if(mkfifo(PIPE_PATHNAME, 0666) == -1 && errno != EEXIST) {
+    if(mkfifo(PIPE_PATHNAME, 0666) == ERROR && errno != EEXIST) {
     	printf("Cannot create channel: %d\n", errno);
-    	return -1;
+    	return ERROR;
     }
 
 	struct Quit {
@@ -87,32 +145,24 @@ int main(int argc, const char* argv[]) {
 		void (*callback) (int);
 	};
     struct Quit quit = {"quit", {0, 0}, &on_quit};
-    if(-1 == pipe(quit.quit_chan)) {
+    if(ERROR == pipe(quit.quit_chan)) {
     	perror("Cannot creae quit chan");
-    	return -1;
+    	return ERROR;
     }
     //	set internal static variable;
     quit.callback(quit.quit_chan[PIPE_WRITE]);
 
+    dispatcher(PIPE_PATHNAME, WORKER_COUNT, quit.quit_chan[PIPE_READ]);
 
-    for(unsigned int i = 0; i < WORKER_COUNT; ++i) {
-		int res = create_worker(PIPE_PATHNAME, quit.quit_chan[PIPE_READ], i);
-		if (res < 0) {
-			perror("Error during creating worker");
-			return -1;
-		} else if(res == 0) {
-			return 0;
-		}
-    }
 	if (SIG_ERR == signal(SIGINT, &on_quit)) {
 		perror("Cannot set SIGINT");
-		return -1;
+		return ERROR;
 	}
 
     int fd = open(PIPE_PATHNAME, O_WRONLY);
-    if (fd == -1) {
+    if (fd == ERROR) {
     	perror("Cannot open chan for write");
-    	return -1;
+    	return ERROR;
     }
 
     char buffer[1024];
@@ -126,22 +176,16 @@ int main(int argc, const char* argv[]) {
 			continue;
     	}
     	if (!strcmp(quit_command, buffer)) {
-    		break;
+			quit.callback(0);
+			break;
     	}
-		if (-1 == write(fd, buffer, len+1)) {
+		if (ERROR == write(fd, buffer, len+1)) {
 			printf("Cannot write\n");
 			continue;
 		}
     }
-    quit.callback(0);
-//	printf("Start quiting...\n");
-//	for(int i = 0; i < WORKER_COUNT; i++) {
-//		if (-1 == write(quit_chan[PIPE_WRITE], "quit", 5)) {
-//			printf("Cannot write quit #%ld\n", i);
-//			perror("");
-//		}
-//	}
-//	wait(NULL);
+
+	wait(NULL);
 
 
 
