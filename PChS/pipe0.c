@@ -18,7 +18,6 @@ int main() {
 	for(int i = 0; i < 10; i++) {
 		int fd3[2];
 		pipe(fd3);
-		printf("Pipe3: %d <- %d\n", fd3[0], fd3[1]);
 	}
 	printf("Pipe1: %d <- %d\n", fd[0], fd[1]);
 	printf("Pipe2: %d <- %d\n", fd2[0], fd2[1]);

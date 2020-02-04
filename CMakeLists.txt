@@ -33,6 +33,8 @@ add_executable(PChS_pid PChS/pid.cpp)
 add_executable(PChS_zombie PChS/zobmie.cpp)
 add_executable(PChS_pipe2 PChS/pipe2.c)
 add_executable(PChS_pipe0 PChS/pipe0.c)
+add_executable(PChS_named_pipe PChS/named_pipe.c)
+add_executable(PChS_named_pipe2 PChS/named_pipe_2.c)
 
 #target_link_libraries(async-libraries_libevent ${LIBEVENT2_CORE})
 target_link_libraries(async-libraries_libevent event_core)
