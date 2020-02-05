@@ -18,7 +18,7 @@ int main() {
 //		return -1;
 //	} else {
 //		printf("%d bytes written\n", n);
-//	}
+//	}https://github.com/tamerlanchik/Stepic_MultihreadNetwork.git
 	char s_pid[5];
 	sprintf(s_pid, "%d", pid);
 	printf("Pid: %d\n", pid);
